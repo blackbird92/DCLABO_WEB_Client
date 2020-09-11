@@ -1,0 +1,468 @@
+
+<html>
+<head>
+	<title>DCLABO</title>
+ 	<meta content="width=device-width,initial-scale=1" name="viewport" />
+ 	<meta charset="UTF-8">
+ 	<link rel="apple-touch-icon" href="./img/apple-touch-icon.png" />
+	<link rel="icon" href="./img/favicon.ico" />
+
+	<style>
+		html, body{
+			width:100%;
+			background-color:white;
+			padding: 0px;
+			margin:0px;
+
+			background-color: rgb(255, 255, 255);
+
+			letter-spacing: -0.45em;
+			font-weight: bold;
+			font-family: Futura;
+
+		}
+		a{
+			color:white;
+			text-decoration: none;
+		}
+		div::-webkit-scrollbar {
+			display: none;
+		}
+		.display-none{
+			display: none;
+		}
+
+		.box{
+			width:100px;
+			height:100px;
+
+			/*padding-top:20px;*/
+			float:left;
+			margin-top:5px;
+			margin-right:5px;
+
+			border-radius:10px;
+			border: solid 6px rgb(210,210,210);
+
+			text-align:left;
+			line-height: 100px;
+			display:block;
+
+			font-size:65px;
+			overflow: hidden;
+			color:rgb(210,210,210);
+			background-color:white;
+		}
+
+		#aircon{
+			width:218px;
+			height:100px;
+
+			margin-top:5px;
+			margin-right:5px;
+			border-radius:10px;
+			border: solid 6px rgb(210,210,210);
+			text-align:center;
+			line-height: 100px;
+			display:block;
+			font-size:65px;
+			
+			color:rgb(210,210,210);
+			background-color:white;
+		}
+
+		#todaynogiobi{
+			width: 218px;
+			height: 100px;
+			letter-spacing: -0.15em;
+		}
+
+		#li{
+			height:220px;
+			clear:both;
+		}
+		.li-inner{
+			width:100%;
+			height:110px;
+			line-height:110px;
+			writing-mode: vertical-rl;
+			font-size:65px;
+		}
+		#li-single{
+			z-index: 1;
+		}
+		#li-double{
+			z-index: 2;
+		}
+
+		#cron{
+			width: 335px;
+			height:100px;
+		}
+
+		.cron-content{
+			width:150%;
+			height:100px;
+
+		}
+
+		.cron_inner{
+			width: 30%;
+			height:100%;
+			float:left;
+		}
+
+		.ps4-inner{
+			width:100px;
+			height:100px;
+
+			display: table-cell;
+
+			line-height: 50px;
+			padding-left:10px;
+			background-color:rgb(200,200,200);
+		}
+
+		@media screen and (max-width: 667px){
+			/* iPhone */
+		}
+
+		@media screen and (min-width: 800px){
+			/* Web */
+		}
+
+		.tv-frame{
+			width:100%;
+			height:50%;
+
+			overflow:scroll;
+			overflow-y: scroll;
+			overflow-x: hidden;
+		}
+
+		.tv-inner{
+			width:100%;
+			height:80px;
+
+			float:left;
+			margin-top:10px;
+			margin-bottom:10px;
+			margin-left: 1px;
+			overflow: hidden;
+			/*border: solid 1px red;*/
+		}
+		#channel-list{
+			white-space:nowrap;
+			overflow:scroll;
+			overflow-x: scroll;
+			/*縦方向はスクロール可*/
+			overflow-y: hidden;
+
+			text-align: center;
+			float:left;
+			line-height: 100%;
+		}
+		.channel-num{
+			font-size:65px;
+		}
+		.vol-updw{
+			width:100%;
+			height:50%;
+
+			font-size:65px;
+			line-height:40px;
+			text-align:center;
+		}
+
+		.cron-element{
+			overflow:scroll;
+			overflow-y: scroll;
+			overflow-x: hidden;
+			width:150px; 
+			height:100%; 
+			float:left;
+			text-align: center;
+		}
+
+		#cron-content-couter{
+			width:1500px; 
+			height:100px;
+			overflow:scroll;
+			overflow-x: scroll;
+			/*縦方向はスクロール可*/
+			overflow-y: hidden;
+
+		}
+	</style>
+</head>
+
+<body>
+<div style="width:100%">
+	<div id="wrpper-controller" style="width:95%; margin-left:5%">	
+		<div class="box trigger" id="aircon"><span style="margin-left:-15px">AIRCON</span></div>
+		<div class="box trigger" id="pj"><span style="margin-left:-10px">PROJ</span></div>
+		<div class="box" id="li">
+			<div class="li-inner trigger" id="li-single">LIGHT</div>
+			<div class="li-inner trigger" id="li-double"></div>
+		</div>
+		<div class="box trigger" id="foot"><span style="margin-left:-5px">LED</span></div>
+		<div class="box trigger"></div>
+		<div class="box" id="ps4">
+			<div class="ps4-outer" style="width:100%; height:50%;">
+				<span style="margin-left:-7px">PS4</span>
+			</div>
+			<div class="ps4-outer display-none" style="width:100%; height:50%;">
+				<div class="ps4-inner  trigger" id="ps4-start">START</div>
+				<div class="ps4-inner  trigger" id="ps4-standby">STOP</div>
+			</div>
+		</div>
+
+		<div class="box" id="reboot"><span style="margin-left:-10px">REBOOT</span></div>
+		<div class="box" id="cron">
+			<div class="cron-content" style="width:100%;">
+				<div style="width: 100%;">
+					<div style="width:60%; float:left;">
+						<span id="cron-nameplate" style="margin-left:-10px">CRON</span>
+					</div>
+					<div style="width:40%; float:left; text-align:right; font-size:40px;">
+						<span id="cron-send" style="margin-left:-10px; color:white;">SEND</span>
+					</div>
+				</div>
+			</div>	
+			<div id="cron-content-couter">
+				<div class="cron-content" >
+					<div class="cron-element" id="devices-picker">
+						<div>AIR</div>
+						<div>LED</div>
+						<div>LIG</div>
+						<div>CLR</div>
+					</div>
+					<div style="width:250px;float:left; margin-left:30px;">
+						<div class="cron-element" id="hours-picker" style="margin-right:5px; width:100px;">
+							<div>01</div>
+							<div>02</div>
+							<div>03</div>
+							<div>04</div>
+							<div>05</div>
+							<div>06</div>
+							<div>07</div>
+							<div>08</div>
+							<div>09</div>
+							<div>10</div>
+							<div>11</div>
+							<div>12</div>
+							<div>13</div>
+							<div>14</div>
+							<div>14</div>
+							<div>15</div>
+							<div>16</div>
+							<div>17</div>
+							<div>18</div>
+							<div>19</div>
+							<div>20</div>
+							<div>21</div>
+							<div>22</div>
+							<div>23</div>
+							<div>24</div>
+						</div>
+						<div style="width:10px; float:left; text-align: center; margin-right:10px">
+						:
+						</div>
+						<div class="cron-element" id="minutes-picker" style="margin-left:-5px;width:100px;">
+							<div>00</div>
+							<div>05</div>
+							<div>10</div>
+							<div>15</div>
+							<div>20</div>
+							<div>25</div>
+							<div>30</div>
+							<div>35</div>
+							<div>40</div>
+							<div>45</div>
+							<div>50</div>
+							<div>55</div>
+						</div>
+					</div>
+					<div class="cron-element" id="addmode-picker" style="width:150px; margin-left:30px;margin-right:30px;">
+						<div>ADD</div>
+						<div>NEW</div>
+					</div>
+					<div class="cron-element" id="timemode-picker" style="width:200px;">
+						<div>THIS</div>
+						<div>AFTER</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="box" id="tv-wrapper" style="clear:both; text-align: center;">
+			<span id="tv-nameplate">TV</span>
+			<div class="tv-frame display-none">
+				<div class="" id="tv">TV</div>
+			</div>
+			<div class="tv-frame display-none">
+				<div class="tv-inner test-trigger" id="tv-power" style="font-size:30px;">
+					POWER
+				</div>
+				<div class="tv-inner test-trigger" id="tv-input" style="font-size:30px;">
+					I N P U T
+				</div>
+				<div class="tv-inner test-trigger" id="tv-mute" style="font-size:30px;">
+					M U T E
+				</div>
+				<div class="tv-inner">
+					<div class="vol-updw test-trigger" id="vol-up">+</div>
+					<div class="vol-updw test-trigger" id="vol-dw">-</div>
+				</div>
+				<div class="tv-inner" id="channel-list" style="text-align: center;">
+					<span class="channel-num test-trigger" id="ch-1">&nbsp;1</span>
+					<span class="channel-num test-trigger" id="ch-2">&nbsp;2&nbsp;</span>
+					<span class="channel-num test-trigger" id="ch-3">&nbsp;3&nbsp;</span>
+					<span class="channel-num test-trigger" id="ch-4">&nbsp;4&nbsp;</span>
+					<span class="channel-num test-trigger" id="ch-5">&nbsp;5&nbsp;</span>
+					<span class="channel-num test-trigger" id="ch-6">6&nbsp;&nbsp;</span>
+				</div>
+			</div>
+		</div>
+		<div class="box trigger" id="todaynogiobi">
+			<span id="todaymember" style="margin-left:-10px">TEST</span>
+		</div>
+	</div>
+</div>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+	var selector_ps4 = 0
+	var selector_reboot = 0
+	var selector_tv = 0
+	var selector_cron = 0
+
+	$(".test-trigger").click(function(){
+		console.log($(this).attr("id"))
+	})
+
+	$(".trigger").click(function(){
+		var id_name = $(this).attr("id")
+		if(id_name != null){
+			throwServer(id_name)
+		}
+	})
+
+	$("#ps4").click(function(){
+		if( selector_ps4 == 0){
+			$(this).animate({
+				height: "210px",
+			}, 800)
+			$(".ps4-outer").removeClass('display-none')
+
+			selector_ps4 = 1
+		}else{
+			$(this).animate({
+				width: "100px",
+				height: "100px",
+			}, 800)
+			$(".ps4-outer").addClass("display-none")
+			
+			selector_ps4 = 0
+		}
+	})
+
+	$("#tv-nameplate").click(function(){
+		if(selector_tv == 0){
+			$("#tv-wrapper").animate({
+				height: "232px"
+			}, 800, function(){
+				$("#tv-nameplate").addClass("display-none")
+				$(".tv-frame").removeClass('display-none')
+			})
+			selector_tv = 1
+		}
+	})
+
+	$("#tv").click(function(){
+		$("#tv-wrapper").animate({
+			height: "100px"
+		}, 800)
+
+		$("#tv-nameplate").removeClass("display-none")
+		$(".tv-frame").addClass('display-none')
+		selector_tv = 0
+	})
+
+	$("#cron-nameplate").click(function(){
+		console.log("HELLO")
+		if( selector_cron == 0){
+			$("#cron").animate({
+				height: "215px"
+			}, 800)
+			$("#cron-send").css({"color":"rgb(210,210,210)"})
+
+			selector_cron = 1
+		}else{
+			$("#cron").animate({
+				width: "335px",
+				height: "100px",
+			}, 800)
+			$("#cron-send").css({"color":"white"})
+			selector_cron = 0
+		}
+	})
+
+	$("#cron-send").click(function(){
+		devices_array = [0,"aircon", "desklight", "light", "clear"]
+		minutes_array = [0, 0, 5,15,20,25,30,35,40,45,50,55]
+
+		device = devices_array[ Math.floor( ($("#devices-picker").scrollTop() + 100) / 100)]
+		hour = Math.floor( ($("#hours-picker").scrollTop() + 100) / 100)
+		min = minutes_array[ Math.floor( ($("#minutes-picker").scrollTop() + 100) / 100)]
+
+		is_add = $("#addmode-picker").scrollTop() < 100 ? 1 : 0
+		is_thistime = $("#timemode-picker").scrollTop() < 100 ? 1 : 0
+
+		var url = 'http://***.***.***.***:***/cron?_t&device=' + device + '&cron_min=' + min + '&cron_hou=' + hour + '&after_time=' + is_thistime + '&add_cron=' + is_add;
+		const request = new XMLHttpRequest();
+		request.open("GET", url);
+		request.send();
+	})
+
+	$("#reboot").click(function(){
+		selector_reboot += 1
+		if(selector_reboot >= 3){
+			$(this).css({"backgroundColor":"white", "color":"red"})
+
+			// throwServer("reboot")
+			selector_reboot = 0
+		}else{
+			$(this).css({"backgroundColor":"red", "color":"white"})
+		}
+	})
+
+	function throwServer(id_name){
+		var url = 'http://***.***.***.***:***/myhome?_t&device=' + id_name;
+		var request = new XMLHttpRequest();
+		request.open('GET', url);
+
+		request.onreadystatechange = function () {
+			if (request.readyState != 4) {
+				// リクエスト中
+		    }else if (request.status != 200) {
+				// 失敗
+			}else{
+				// 取得成功
+				var result = request.responseText;
+				if(id_name == "todaynogiobi"){
+					console.log(result)
+					result = result.replace(" ", "")
+					$("#todaymember").html(result)
+				}
+			}
+		};
+		request.send(null);
+	}
+	
+</script>
+</body>
+</html>
